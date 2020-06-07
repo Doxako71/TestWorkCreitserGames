@@ -15,6 +15,7 @@ namespace TestWork.Player
         {
             var go = Instantiate(prefab, transform.position, Quaternion.identity);
             go.Push(direction);
+            Data.AddBall();
         }
     }
 }
