@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace TestWork.Player
 {
@@ -9,6 +10,8 @@ namespace TestWork.Player
 #pragma warning disable 0649
         [SerializeField]
         private PlayerShooting playerShooting;
+        [SerializeField]
+        private EventSystem eventSystem;
 #pragma warning restore 0649
         private Camera cam;
 
@@ -19,7 +22,7 @@ namespace TestWork.Player
 
         private void Update()
         {
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0) && !eventSystem.IsPointerOverGameObject())
             {
                 var dir = cam.ScreenPointToRay(Input.mousePosition);
                 playerShooting.Shot(dir.direction);
