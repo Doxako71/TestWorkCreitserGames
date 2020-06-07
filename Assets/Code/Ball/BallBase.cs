@@ -11,6 +11,8 @@ namespace TestWork.Ball
 
         [SerializeField]
         protected float force;
+        [SerializeField]
+        protected GameObject fx;
 
 #pragma warning restore 0649
 
@@ -23,10 +25,12 @@ namespace TestWork.Ball
 
         protected virtual void OnTriggerEnter(Collider other)
         {
+            print(other);
             if (other.CompareTag("absorp"))
             {
                 Destroy(gameObject);
             }
+            fx.SetActive(true);
         }
 
         public virtual void Push(Vector3 direction)
