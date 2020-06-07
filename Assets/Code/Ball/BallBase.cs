@@ -6,6 +6,7 @@ namespace TestWork.Ball
 {
     public abstract class BallBase : MonoBehaviour
     {
+        private const float Delta = 1000f;
 #pragma warning disable 0649
 
         [SerializeField]
@@ -20,9 +21,17 @@ namespace TestWork.Ball
             rb = GetComponent<Rigidbody>();
         }
 
+        protected virtual void OnTriggerEnter(Collider other)
+        {
+            if (other.CompareTag("absorp"))
+            {
+                Destroy(gameObject);
+            }
+        }
+
         public virtual void Push(Vector3 direction)
         {
-            rb.AddForce(direction * force * Time.fixedDeltaTime, ForceMode.Impulse);
+            rb.AddForce(direction * force * Delta * Time.fixedDeltaTime, ForceMode.Impulse);
         }
     }
 }
